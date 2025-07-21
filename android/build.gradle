@@ -99,12 +99,12 @@ android {
         }
     }
 
-    compileSdkVersion safeExtGet("compileSdkVersion", 28)
-    buildToolsVersion safeExtGet("buildToolsVersion", '28.0.3')
+    compileSdkVersion safeExtGet("compileSdkVersion", 35)
+    buildToolsVersion safeExtGet("buildToolsVersion", '35.0.0')
 
     defaultConfig {
         minSdkVersion safeExtGet('minSdkVersion', 21)
-        targetSdkVersion safeExtGet('targetSdkVersion', 26)
+        targetSdkVersion safeExtGet('targetSdkVersion', 35)
         versionCode 1
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
@@ -164,9 +164,14 @@ dependencies {
 
     // Dependencies
     customizableDependencies('RNMapboxMapsSupportLibs') {
-        implementation "com.android.support:support-vector-drawable:28.0.0"
-        implementation "com.android.support:support-annotations:28.0.0"
-        implementation "com.android.support:appcompat-v7:28.0.0"
+        implementation "androidx.appcompat:appcompat:1.7.0"
+        implementation "androidx.annotation:annotation:1.8.0"
+        implementation "androidx.vectordrawable:vectordrawable:1.1.0"
+        implementation "androidx.lifecycle:lifecycle-common:2.6.2"
+        implementation "androidx.lifecycle:lifecycle-runtime:2.6.2"
+        implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
+        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2"
+
     }
     customizableDependencies('RNMapboxMapsOkHTTPLibs') {
         implementation "com.squareup.okhttp3:okhttp:4.9.0"

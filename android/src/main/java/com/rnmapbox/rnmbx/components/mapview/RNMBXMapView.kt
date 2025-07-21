@@ -164,6 +164,9 @@ class RNMBXLifeCycle {
                     lifecycleRegistry.currentState = Lifecycle.State.CREATED
                 }
 
+                override val lifecycle: Lifecycle
+                    get() = lifecycleRegistry
+
                 override fun handleLifecycleEvent(event: Lifecycle.Event) {
                     try {
                         lifecycleRegistry.handleLifecycleEvent(event)
@@ -172,11 +175,7 @@ class RNMBXLifeCycle {
                     }
                 }
 
-                override fun getLifecycle(): Lifecycle {
-                    return lifecycleRegistry
-                }
             }
-            ViewTreeLifecycleOwner.set(view, lifecycleOwner);
         }
         lifecycleOwner?.handleLifecycleEvent(Lifecycle.Event.ON_START)
     }

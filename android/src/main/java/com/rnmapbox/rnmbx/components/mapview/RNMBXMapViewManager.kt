@@ -86,19 +86,19 @@ open class RNMBXMapViewManager(context: ReactApplicationContext, val viewTagReso
         }
     }
 
-    override fun addView(mapView: RNMBXMapView?, childView: View?, childPosition: Int) {
+    fun addView(mapView: RNMBXMapView?, childView: View?, childPosition: Int) {
         mapView!!.addFeature(childView, childPosition)
     }
 
-    override fun getChildCount(mapView: RNMBXMapView?): Int {
+    fun getChildCount(mapView: RNMBXMapView?): Int {
         return mapView!!.featureCount
     }
 
-    override fun getChildAt(mapView: RNMBXMapView?, index: Int): View? {
+    fun getChildAt(mapView: RNMBXMapView?, index: Int): View? {
         return mapView!!.getFeatureAt(index)
     }
 
-    override fun removeViewAt(mapView: RNMBXMapView?, index: Int) {
+    fun removeViewAt(mapView: RNMBXMapView?, index: Int) {
         mapView!!.removeFeatureAt(index)
     }
 

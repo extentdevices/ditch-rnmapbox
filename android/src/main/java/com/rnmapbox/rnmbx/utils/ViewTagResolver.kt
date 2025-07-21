@@ -24,22 +24,28 @@ open class ViewTagResolver(val context: ReactApplicationContext) {
 
     // to be called from view.setId
     fun tagAssigned(viewTag: Int) {
+        // mark this tag as "created"
         createdViews.add(viewTag)
 
-        val list = viewWaiters[viewTag]
-        if (list != null) {
-            context.runOnUiQueueThread {
-                try {
-                    val view = manager.resolveView(viewTag)
-
-                    list.forEach { it.fn(view) }
-                } catch (err: IllegalViewOperationException) {
-                    list.forEach { it.reject?.reject(err) }
+        // if anyone is waiting for this tag, fire their callbacks
+        val waiters = viewWaiters.remove(viewTag) ?: return
+        context.runOnUiQueueThread {
+            try {
+                // resolveView returns a nullable View
+                val resolved: View? = manager.resolveView(viewTag)
+                // if it's still null, bail out of this lambda
+                if (resolved == null) {
+                    return@runOnUiQueueThread
                 }
-                viewWaiters.remove(viewTag)
+                // invoke each waiter with a non-null View
+                waiters.forEach { it.fn(resolved) }
+            } catch (err: IllegalViewOperationException) {
+                // reject all promises
+                waiters.forEach { it.reject?.reject(err) }
             }
         }
     }
+
 
     fun viewRemoved(viewTag: Int) {
         viewWaiters.remove(viewTag)

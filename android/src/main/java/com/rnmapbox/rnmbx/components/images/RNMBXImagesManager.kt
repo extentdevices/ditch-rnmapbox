@@ -210,7 +210,7 @@ class RNMBXImagesManager(private val mContext: ReactApplicationContext) :
 
     // region RNMBXImage children
 
-    override fun addView(parent: RNMBXImages?, childView: View?, childPosition: Int) {
+    fun addView(parent: RNMBXImages?, childView: View?, childPosition: Int) {
         if (parent == null || childView == null) {
             Logger.e("RNMBXImages", "addView: parent or childView is null")
             return
@@ -225,7 +225,7 @@ class RNMBXImagesManager(private val mContext: ReactApplicationContext) :
         childView.nativeImageUpdater = parent
     }
 
-    override fun removeView(parent: RNMBXImages?, view: View?) {
+    fun removeView(parent: RNMBXImages?, view: View?) {
         if (parent == null || view == null) {
             Logger.e("RNMBXImages", "removeView: parent or view is null")
             return
