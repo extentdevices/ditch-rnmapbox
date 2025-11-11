@@ -7,7 +7,7 @@ import MapContext from '../MapContext';
  * MapView backed by Mapbox GL KS
  */
 class MapView extends React.Component<
-  { styleURL: string; children: JSX.Element },
+  { styleURL: string; children: React.ReactElement },
   { map?: object | null }
 > {
   state = { map: null };
@@ -34,7 +34,7 @@ class MapView extends React.Component<
     return (
       <div
         style={{ width: '100%', height: '100%' }}
-        ref={(el) => (this.mapContainer = el)}
+        ref={(el) => { this.mapContainer = el; }}
       >
         {map && (
           <div style={{ position: 'absolute' }}>

@@ -89,7 +89,7 @@ export type Props = LayerPropsCommon & {
    * @deprecated passed children used to create an image with id of symbol in style and also set the iconImageName property accordingly.
    * This is now deprecated, use Image component instead.
    */
-  children?: JSX.Element | JSX.Element[];
+  children?: React.ReactElement | React.ReactElement[];
 };
 
 type NativeTypeProps = Omit<Props, 'style'> & {
