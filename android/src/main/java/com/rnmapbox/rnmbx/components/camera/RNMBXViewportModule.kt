@@ -37,13 +37,15 @@ class RNMBXViewportModule(context: ReactApplicationContext, val viewTagResolver:
         }
     }
 
-    fun getState(viewRef: ViewRefTag?, promise: Promise) {
+    @ReactMethod
+    override fun getState(viewRef: ViewRefTag?, promise: Promise) {
         withViewportOnUIThread(viewRef, promise) {
             promise.resolve(it.getState())
         }
     }
 
-    fun transitionTo(
+    @ReactMethod
+    override fun transitionTo(
         viewRef: ViewRefTag?,
         state: ReadableMap,
         transition: ReadableMap?,
@@ -54,7 +56,8 @@ class RNMBXViewportModule(context: ReactApplicationContext, val viewTagResolver:
         }
     }
 
-    fun idle(viewRef: ViewRefTag?, promise: Promise) {
+    @ReactMethod
+    override fun idle(viewRef: ViewRefTag?, promise: Promise) {
         withViewportOnUIThread(viewRef, promise) {
             it.idle()
             promise.resolve(true)

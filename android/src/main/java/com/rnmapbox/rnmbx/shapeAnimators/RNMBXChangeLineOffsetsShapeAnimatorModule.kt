@@ -153,7 +153,8 @@ class RNMBXChangeLineOffsetsShapeAnimatorModule(
         const val NAME = "RNMBXChangeLineOffsetsShapeAnimatorModule"
     }
 
-    fun create(
+    @ReactMethod
+    override fun create(
         tag: ViewRefTag,
         coordinates: ReadableArray,
         startOffset: Double,
@@ -177,7 +178,8 @@ class RNMBXChangeLineOffsetsShapeAnimatorModule(
         return shapeAnimatorManager.get(tag.toLong()) as ChangeLineOffsetsShapeAnimator
     }
 
-    fun setLineString(tag: ViewRefTag, coordinates: ReadableArray?, startOffset: Double, endOffset: Double, promise: Promise?) {
+    @ReactMethod
+    override fun setLineString(tag: ViewRefTag, coordinates: ReadableArray?, startOffset: Double, endOffset: Double, promise: Promise?) {
         val animator = getAnimator(tag)
 
         if (coordinates == null) {
@@ -192,13 +194,15 @@ class RNMBXChangeLineOffsetsShapeAnimatorModule(
         promise?.resolve(true)
     }
 
-    fun setStartOffset(tag: ViewRefTag, offset: Double, duration: Double, promise: Promise?) {
+    @ReactMethod
+    override fun setStartOffset(tag: ViewRefTag, offset: Double, duration: Double, promise: Promise?) {
         val animator = getAnimator(tag)
         animator.setStartOffset(offset, duration / 1000)
         promise?.resolve(true)
     }
 
-    fun setEndOffset(tag: ViewRefTag, offset: Double, duration: Double, promise: Promise?) {
+    @ReactMethod
+    override fun setEndOffset(tag: ViewRefTag, offset: Double, duration: Double, promise: Promise?) {
         val animator = getAnimator(tag)
         animator.setEndOffset(offset, duration / 1000)
         promise?.resolve(true)

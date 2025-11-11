@@ -43,7 +43,8 @@ class RNMBXCameraModule(context: ReactApplicationContext, val viewTagResolver: V
       const val NAME = "RNMBXCameraModule"
     }
 
-    fun updateCameraStop(viewRef: ViewRefTag?, stop: ReadableMap, promise: Promise) {
+    @ReactMethod
+    override fun updateCameraStop(viewRef: ViewRefTag?, stop: ReadableMap, promise: Promise) {
         withViewportOnUIThread(viewRef, promise) {
             it.updateCameraStop(stop)
             promise.resolve(null)
