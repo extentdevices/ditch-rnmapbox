@@ -513,7 +513,7 @@ class RNMBXLocationModule: RCTEventEmitter, LocationProviderRNMBXDelegate {
   }
   
   @objc func getLastKnownLocation(_ resolve: @escaping RCTPromiseResolveBlock,
-                                    rejecter reject: @escaping RCTPromiseRejectBlock) {
+                                    rejecter: @escaping RCTPromiseRejectBlock) {
     let result = RNMBXLocation()
     if let locationProvider = locationProvider as? LocationProviderRNMBX {
       if let location = locationProvider.lastKnownLocation {
