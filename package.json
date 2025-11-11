@@ -1,7 +1,7 @@
 {
   "name": "rnmapbox-ditch",
   "description": "A customized Mapbox React Native module designed to create tailored maps, specifically enhanced for the unique requirements of Ditch Navigation.",
-  "version": "1.2.46",
+  "version": "1.2.47",
   "publishConfig": {
     "access": "public"
   },

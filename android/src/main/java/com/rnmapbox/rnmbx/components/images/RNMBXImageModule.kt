@@ -25,7 +25,7 @@ class RNMBXImageModule(reactContext: ReactApplicationContext?, private val viewT
     }
 
     @ReactMethod
-    fun refresh(viewRef: ViewRefTag?, promise: Promise) {
+    override fun refresh(viewRef: ViewRefTag?, promise: Promise) {
         withImageOnUIThread(viewRef, promise) {
             it.refresh()
             promise.resolve(null)
