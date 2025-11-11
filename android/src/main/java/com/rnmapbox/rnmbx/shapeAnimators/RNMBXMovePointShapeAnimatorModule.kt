@@ -78,7 +78,7 @@ class RNMBXMovePointShapeAnimatorModule(
     }
 
     @ReactMethod
-    override fun create(tag: ViewRefTag, startCoordinate: ReadableArray, promise: Promise) {
+    fun create(tag: ViewRefTag, startCoordinate: ReadableArray, promise: Promise) {
         shapeAnimatorManager.add(
             MovePointShapeAnimator(
                 tag.toLong(),
@@ -92,7 +92,7 @@ class RNMBXMovePointShapeAnimatorModule(
     }
 
     @ReactMethod
-    override fun moveTo(
+    fun moveTo(
         tag: ViewRefTag,
         coordinate: ReadableArray?,
         duration: Double,

@@ -25,7 +25,7 @@ class RNMBXPointAnnotationModule(reactContext: ReactApplicationContext?, private
     }
 
     @ReactMethod
-    override fun refresh(viewRef: ViewRefTag?, promise: Promise) {
+    fun refresh(viewRef: ViewRefTag?, promise: Promise) {
         withPointAnnotationOnUIThread(viewRef, promise) {
             it.refresh()
             promise.resolve(null)

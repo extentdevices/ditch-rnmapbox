@@ -30,7 +30,7 @@ class RNMBXShapeSourceModule(reactContext: ReactApplicationContext?, private val
     }
 
     @ReactMethod
-    override fun getClusterExpansionZoom(
+    fun getClusterExpansionZoom(
         viewRef: ViewRefTag?,
         featureJSON: String,
         promise: Promise
@@ -41,7 +41,7 @@ class RNMBXShapeSourceModule(reactContext: ReactApplicationContext?, private val
     }
 
     @ReactMethod
-    override fun getClusterLeaves(
+    fun getClusterLeaves(
         viewRef: ViewRefTag?,
         featureJSON: String,
         number: Int,
@@ -54,7 +54,7 @@ class RNMBXShapeSourceModule(reactContext: ReactApplicationContext?, private val
     }
 
     @ReactMethod
-    override fun getClusterChildren(viewRef: ViewRefTag?, featureJSON: String, promise: Promise) {
+    fun getClusterChildren(viewRef: ViewRefTag?, featureJSON: String, promise: Promise) {
         withShapeSourceOnUIThread(viewRef, promise) {
             it.getClusterChildren(featureJSON, promise)
         }

@@ -37,9 +37,9 @@ fun ReadableArray.toValue(): Value {
             ReadableType.Null -> Value.nullValue()
             ReadableType.Boolean -> Value.valueOf(getBoolean(i))
             ReadableType.Number -> Value.valueOf(getDouble(i))
-            ReadableType.String -> Value.valueOf(getString(i))
-            ReadableType.Array -> getArray(i).toValue()
-            ReadableType.Map -> getMap(i).toValue()
+            ReadableType.String -> Value.valueOf(getString(i)!!)
+            ReadableType.Array -> getArray(i)!!.toValue()
+            ReadableType.Map -> getMap(i)!!.toValue()
         })
     }
     return Value.valueOf(result)
