@@ -115,7 +115,7 @@ class RNMBXShapeSourceManager(private val mContext: ReactApplicationContext, val
                         expressions.getArray(iExp)
                     )!!
                     ReadableType.Map -> ExpressionParser.from(
-                        expressions.getMap(iExp)
+                        expressions.getMap(iExp)!!
                     )
                     ReadableType.Boolean -> Expression.literal(expressions.getBoolean(iExp))
                     ReadableType.Number -> Expression.literal(expressions.getDouble(iExp))

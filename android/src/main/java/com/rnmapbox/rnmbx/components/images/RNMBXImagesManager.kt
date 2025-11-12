@@ -210,7 +210,7 @@ class RNMBXImagesManager(private val mContext: ReactApplicationContext) :
 
     // region RNMBXImage children
 
-    override fun addView(parent: RNMBXImages?, childView: View?, childPosition: Int) {
+    fun addView(parent: RNMBXImages?, childView: View?, childPosition: Int) {
         if (parent == null || childView == null) {
             Logger.e("RNMBXImages", "addView: parent or childView is null")
             return
@@ -225,7 +225,7 @@ class RNMBXImagesManager(private val mContext: ReactApplicationContext) :
         childView.nativeImageUpdater = parent
     }
 
-    override fun removeView(parent: RNMBXImages?, view: View?) {
+    fun removeView(parent: RNMBXImages?, view: View?) {
         if (parent == null || view == null) {
             Logger.e("RNMBXImages", "removeView: parent or view is null")
             return
@@ -259,7 +259,7 @@ class RNMBXImagesManager(private val mContext: ReactApplicationContext) :
                 if (array.getType(i) != ReadableType.Array) {
                     Logger.e("RNMBXImages", "each element of strech should be an array but was: ${array.getDynamic(i)}")
                 } else {
-                    val pair = array.getArray(i)
+                    val pair = array.getArray(i)!!
                     if (pair.size() != 2 || pair.getType(0) != ReadableType.Number || pair.getType(1) != ReadableType.Number) {
                         Logger.e("RNMBXImages", "each element of stretch should be pair of 2 integers but was ${pair}")
                     }

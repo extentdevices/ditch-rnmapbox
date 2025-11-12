@@ -10,19 +10,19 @@ import com.rnmapbox.rnmbx.components.AbstractEventEmitter
 abstract class RNMBXTileSourceManager<T : RNMBXTileSource<*>?> internal constructor(
     reactApplicationContext: ReactApplicationContext
 ) : AbstractEventEmitter<T>(reactApplicationContext) {
-    override fun getChildAt(source: T, childPosition: Int): View {
+    fun getChildAt(source: T, childPosition: Int): View {
         return source!!.getChildAt(childPosition)
     }
 
-    override fun getChildCount(source: T): Int {
+    fun getChildCount(source: T): Int {
         return source!!.childCount
     }
 
-    override fun addView(source: T, childView: View, childPosition: Int) {
+    fun addView(source: T, childView: View, childPosition: Int) {
         source!!.addLayer(childView, childPosition)
     }
 
-    override fun removeViewAt(source: T, childPosition: Int) {
+    fun removeViewAt(source: T, childPosition: Int) {
         source!!.removeLayer(childPosition)
     }
 
@@ -41,7 +41,7 @@ abstract class RNMBXTileSourceManager<T : RNMBXTileSource<*>?> internal construc
         val urls: MutableList<String> = ArrayList()
         for (i in 0 until tileUrlTemplates.asArray().size()) {
             if (tileUrlTemplates.asArray().getType(0) == ReadableType.String) {
-                urls.add(tileUrlTemplates.asArray().getString(i))
+                tileUrlTemplates.asArray().getString(i)?.let { urls.add(it) }
             }
         }
         source!!.tileUrlTemplates = urls

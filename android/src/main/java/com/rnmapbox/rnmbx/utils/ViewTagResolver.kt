@@ -31,8 +31,9 @@ open class ViewTagResolver(val context: ReactApplicationContext) {
             context.runOnUiQueueThread {
                 try {
                     val view = manager.resolveView(viewTag)
-
-                    list.forEach { it.fn(view) }
+                    if (view != null) {
+                        list.forEach { it.fn(view) }
+                    }
                 } catch (err: IllegalViewOperationException) {
                     list.forEach { it.reject?.reject(err) }
                 }

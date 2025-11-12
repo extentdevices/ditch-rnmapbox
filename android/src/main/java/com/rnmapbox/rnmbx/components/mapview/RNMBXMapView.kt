@@ -172,9 +172,8 @@ class RNMBXLifeCycle {
                     }
                 }
 
-                override fun getLifecycle(): Lifecycle {
-                    return lifecycleRegistry
-                }
+                override val lifecycle: Lifecycle
+                    get() = lifecycleRegistry
             }
             ViewTreeLifecycleOwner.set(view, lifecycleOwner);
         }

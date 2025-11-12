@@ -34,13 +34,13 @@ import java.util.HashMap
 
 fun ReadableArray.forEachString(action: (String) -> Unit) {
     for (i in 0 until size()) {
-        action(getString(i))
+        getString(i)?.let { action(it) }
     }
 }
 
 fun ReadableArray.asArrayString(): Array<String> {
     val result = Array<String>(size()) {
-        getString(it)
+        getString(it)!!
     }
     return result
 }
@@ -57,7 +57,7 @@ open class RNMBXMapViewManager(context: ReactApplicationContext, val viewTagReso
     private val mDelegate: ViewManagerDelegate<RNMBXMapView>
 
     init {
-        mDelegate = RNMBXMapViewManagerDelegate<RNMBXMapView, RNMBXMapViewManager>(this)
+        mDelegate = RNMBXMapViewManagerDelegate(this)
     }
 
     override fun getDelegate(): ViewManagerDelegate<RNMBXMapView>? {
@@ -86,19 +86,19 @@ open class RNMBXMapViewManager(context: ReactApplicationContext, val viewTagReso
         }
     }
 
-    override fun addView(mapView: RNMBXMapView?, childView: View?, childPosition: Int) {
+    fun addView(mapView: RNMBXMapView?, childView: View?, childPosition: Int) {
         mapView!!.addFeature(childView, childPosition)
     }
 
-    override fun getChildCount(mapView: RNMBXMapView?): Int {
+    fun getChildCount(mapView: RNMBXMapView?): Int {
         return mapView!!.featureCount
     }
 
-    override fun getChildAt(mapView: RNMBXMapView?, index: Int): View? {
+    fun getChildAt(mapView: RNMBXMapView?, index: Int): View? {
         return mapView!!.getFeatureAt(index)
     }
 
-    override fun removeViewAt(mapView: RNMBXMapView?, index: Int) {
+    fun removeViewAt(mapView: RNMBXMapView?, index: Int) {
         mapView!!.removeFeatureAt(index)
     }
 

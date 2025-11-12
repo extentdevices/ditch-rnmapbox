@@ -81,7 +81,7 @@ class RNMBXStyleValue(config: ReadableMap) {
         val result = ArrayList<Double>(arr!!.size())
         for (i in 0 until arr.size()) {
             val item = arr.getMap(i)
-            result.add(item.getDouble("value"))
+            result.add(item!!.getDouble("value"))
         }
         return result
     }
@@ -103,7 +103,7 @@ class RNMBXStyleValue(config: ReadableMap) {
         val result = ArrayList<String>(arr!!.size())
         for (i in 0 until arr.size()) {
             val item = arr.getMap(i)
-            val value = item.getString("value")
+            val value = item!!.getString("value")
             if (value != null) {
                 result.add(value)
             } else {
@@ -120,9 +120,9 @@ class RNMBXStyleValue(config: ReadableMap) {
                 val result = WritableNativeMap()
                 for (i in 0 until keyValues!!.size()) {
                     val keyValue = keyValues.getArray(i)
-                    val stringKey = keyValue.getMap(0).getString("value")
+                    val stringKey = keyValue!!.getMap(0)!!.getString("value")
                     val value = WritableNativeMap()
-                    value.merge(keyValue.getMap(1))
+                    value.merge(keyValue.getMap(1)!!)
                     result.putMap(stringKey!!, value)
                 }
                 return result
