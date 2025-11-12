@@ -7,7 +7,8 @@
 
 RCT_EXTERN_METHOD(start:(CLLocationDistance)minDisplacement)
 RCT_EXTERN_METHOD(stop)
-RCT_EXTERN_METHOD(getLastKnownLocation)
+RCT_EXTERN_METHOD(getLastKnownLocation:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(setMinDisplacement:(CLLocationDistance)minDisplacement)
 RCT_EXTERN_METHOD(setRequestsAlwaysUse:(BOOL)requestsAlwaysUse)

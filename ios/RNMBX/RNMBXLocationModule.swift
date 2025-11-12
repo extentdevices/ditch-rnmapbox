@@ -512,8 +512,23 @@ class RNMBXLocationModule: RCTEventEmitter, LocationProviderRNMBXDelegate {
     }
   }
   
-  @objc func getLastKnownLocation() -> RNMBXLocation? {
-    return RNMBXLocation()
+  @objc func getLastKnownLocation(_ resolve: @escaping RCTPromiseResolveBlock,
+                                    rejecter: @escaping RCTPromiseRejectBlock) {
+    let result = RNMBXLocation()
+    if let locationProvider = locationProvider as? LocationProviderRNMBX {
+      if let location = locationProvider.lastKnownLocation {
+        result.location = location
+        result.timestamp = location.timestamp
+      }
+      if let heading = locationProvider.lastKnownHeading {
+        result.heading = heading
+        if result.timestamp == nil ||
+            heading.timestamp.compare(result.timestamp!) == .orderedAscending {
+          result.timestamp = heading.timestamp
+        }
+      }
+    }
+    resolve(result.toJSON())
   }
   
   @objc func setMinDisplacement(_ minDisplacement: CLLocationDistance) {
